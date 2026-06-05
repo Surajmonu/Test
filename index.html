@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do You Love Me?</title>
+<style>
+body{
+    margin:0;height:100vh;display:flex;flex-direction:column;
+    justify-content:center;align-items:center;font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#ffe6f0,#fff5f5);overflow:hidden;
+}
+.yes-btn{position:absolute;top:20px;right:20px;padding:10px 20px;border:none;border-radius:10px;background:#4CAF50;color:white;cursor:pointer;}
+.cat{font-size:120px;}
+.question{font-size:34px;font-weight:bold;margin:20px 0;}
+.no-btn{position:absolute;padding:12px 28px;border:none;border-radius:10px;background:#ff4d4d;color:white;font-size:18px;cursor:pointer;}
+</style>
+</head>
+<body>
+<button class="yes-btn" onclick="showLove()">YES ❤️</button>
+<div class="cat">🐱❓</div>
+<div class="question">DO YOU LOVE ME?</div>
+<button id="noBtn" class="no-btn">NO 😒</button>
+<script>
+const noBtn=document.getElementById("noBtn");
+noBtn.style.left="50%";
+noBtn.style.top="70%";
+noBtn.addEventListener("mouseover",()=>{
+ const maxX=window.innerWidth-noBtn.offsetWidth;
+ const maxY=window.innerHeight-noBtn.offsetHeight;
+ noBtn.style.left=(Math.random()*maxX)+"px";
+ noBtn.style.top=(Math.random()*maxY)+"px";
+});
+noBtn.addEventListener("click",()=>{
+ document.body.innerHTML='<h1 style="text-align:center;margin-top:200px;">You can\'t put efforts for finding YES, but for me 😡</h1>';
+});
+function showLove(){
+ document.body.innerHTML='<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;"><h1>YAYYY! ❤️🥰</h1><h2>I knew it! 😘</h2><div style="font-size:100px">🐱💕</div></div>';
+}
+</script>
+</body>
+</html>
