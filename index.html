@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do You Love Me? ❤️</title>
+
+<style>     
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffd6e7,#fff5f7);
+}
+
+.container{
+    text-align:center;
+}
+
+.cat{
+    font-size:120px;
+    animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+input{
+    width:280px;
+    padding:12px;
+    border-radius:10px;
+    border:2px solid #ffb6c1;
+    margin:20px 0;
+    text-align:center;
+    font-size:16px;
+}
+
+.question{
+    font-size:32px;
+    font-weight:bold;
+    color:#333;
+    margin-bottom:30px;
+}
+
+.yes-btn{
+    position:absolute;
+    top:15px;
+    right:15px;
+    padding:6px 10px;
+    font-size:10px;
+    border:none;
+    border-radius:8px;
+    background:#4CAF50;
+    color:white;
+    opacity:0.4;
+    cursor:pointer;
+}
+
+.no-btn{
+    position:absolute;
+    padding:15px 40px;
+    font-size:22px;
+    border:none;
+    border-radius:12px;
+    background:#ff4d4d;
+    color:white;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.result{
+    text-align:center;
+    padding:20px;
+}
+
+.result h1{
+    font-size:60px;
+}
+
+.result p{
+    font-size:30px;
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<button class="yes-btn" onclick="sayYes()">YES</button>
+
+<div class="container">
+    <div class="cat">🐱❓</div>
+
+    <input
+        type="text"
+        id="name"
+        placeholder="Enter your name"
+    >
+
+    <div class="question">
+        DO YOU LOVE ME? ❤️
+    </div>
+
+    <button id="noBtn" class="no-btn">
+        NO 😒
+    </button>
+</div>
+
+<script>
+
+let attempts = 0;
+const noBtn = document.getElementById("noBtn");
+
+noBtn.style.left = "42%";
+noBtn.style.top = "72%";
+
+function moveButton() {
+
+    if(attempts >= 10){
+        showSecondPage();
+        return;
+    }
+
+    attempts++;
+
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+
+    noBtn.style.transform =
+        `scale(${1 + attempts * 0.08})`;
+
+    if(attempts === 10){
+        setTimeout(() => {
+            alert("Wow 😏 You tried 10 times!");
+            showSecondPage();
+        }, 500);
+    }
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
+
+function showSecondPage(){
+
+    document.body.innerHTML = `
+    <div class="result">
+        <h1>😡</h1>
+
+        <p>
+        You can't put efforts into finding YES,<br>
+        but for me?
+        </p>
+
+        <br>
+
+        <p>
+        That's unfair 💔
+        </p>
+    </div>
+    `;
+}
+
+function sayYes(){
+
+    let name =
+        document.getElementById("name").value.trim();
+
+    if(name === ""){
+        name = "Someone";
+    }
+
+    document.body.innerHTML = `
+    <div class="result">
+
+        <h1>❤️🥰❤️</h1>
+
+        <p>
+            Yayyyyy!!!<br><br>
+            ${name} loves me ❤️
+        </p>
+
+        <div style="font-size:120px;margin-top:20px;">
+            🐱💕
+        </div>
+
+    </div>
+    `;
+}
+
+</script>
+
+</body>
+</html>
